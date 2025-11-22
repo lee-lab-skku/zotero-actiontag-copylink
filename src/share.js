@@ -1,5 +1,6 @@
 const TARGET_GROUP_ID = 6201785;
 const TARGET_COLLECTION_KEY = 'PM7BWNF7';
+const TARGET_ACTION_KEY = 'copySelectionLink';
 
 (async () => {
     const type = item.itemTypeID;
@@ -35,6 +36,9 @@ const TARGET_COLLECTION_KEY = 'PM7BWNF7';
             }
         }
     }
+
+    const arg = { itemID: newItem.id, itemIDs: [newItem.id], collectionID: coll.id, triggerType: 'menu' };
+    await Zotero.ActionsTags.api.actionManager.dispatchActionByKey(TARGET_ACTION_KEY, arg);
 
     return 0;
 })().catch(e => {
